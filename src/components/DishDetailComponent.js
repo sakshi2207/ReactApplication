@@ -1,17 +1,17 @@
 import React,{Component} from 'react';
 import {Card,CardImg,CardBody,CardText,CardTitle} from 'reactstrap';
 class DishDetail extends Component{
+    formatDate(date) {
+        var options = { year: "numeric", month: "short", day: "numeric" };
+        return new Date(date).toLocaleDateString([], options);
+      }
     renderComments(comments){
         const cmnts=comments.map((comment)=>{
             return(
                 <li key={comment.id}>
                     <p>{comment.comment}</p>
-                    <p>--{comment.author},&nbsb;
-                    {new Intl.DateTimeFormat('en-Us',{
-                        year:'numeric',
-                        month:'long',
-                        day:'2-digit'
-                    }).format(new Date(comment.date))}
+                    <p>--{comment.author}, &nbsp; 
+                    {this.formatDate(comment.date)}
                     </p>
                 </li>
             )
